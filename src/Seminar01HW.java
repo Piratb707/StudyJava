@@ -1,4 +1,4 @@
-
+// Родительский класс Product
 class Product {
     private String name;
     private double price;
@@ -16,56 +16,40 @@ class Product {
         return price;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public String toString() {
+        return "Product [name=" + name + ", price=" + price + "]";
+    }
+}
+
+// Наследник класса Product - класс HotDrink
+class HotDrink extends Product {
+    private int temperature;
+
+    public HotDrink(String name, double price, int temperature) {
+        super(name, price);
+        this.temperature = temperature;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public int getTemperature() {
+        return temperature;
     }
 
     @Override
     public String toString() {
-        return name + " - $" + price;
+        return "HotDrink [name=" + getName() + ", price=" + getPrice() + ", temperature=" + temperature + "]";
     }
 }
 
-class VendingMachine {
-    private List<Product> products;
-    private double cash;
+// Главный класс с методом main
+public class Main {
+    public static void main(String[] args) {
+        HotDrink tea = new HotDrink("Чай", 1.5, 80);
+        HotDrink coffee = new HotDrink("Кофе", 2.0, 90);
+        HotDrink hotChocolate = new HotDrink("Горячий шоколад", 2.5, 85);
 
-    public VendingMachine() {
-        products = new ArrayList<>();
-        cash = 0.0;
-    }
-
-    public void addProduct(Product product) {
-        products.add(product);
-    }
-
-    public void addCash(double amount) {
-        cash += amount;
-    }
-
-    public void buyProduct(int index) {
-        if (index >= 0 && index < products.size()) {
-            Product product = products.get(index);
-            if (cash >= product.getPrice()) {
-                cash -= product.getPrice();
-                products.remove(index);
-                JOptionPane.showMessageDialog(null, "Вы купили " + product.getName() + " за $" + product.getPrice());
-            } else {
-                JOptionPane.showMessageDialog(null, "Недостаточно средств для покупки " + product.getName());
-            }
-        }
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public double getCash() {
-        return cash;
+        System.out.println(tea);
+        System.out.println(coffee);
+        System.out.println(hotChocolate);
     }
 }
-
