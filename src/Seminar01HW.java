@@ -1,4 +1,3 @@
-// Родительский класс Product
 class Product {
     private String name;
     private double price;
@@ -16,13 +15,20 @@ class Product {
         return price;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Product [name=" + name + ", price=" + price + "]";
     }
 }
 
-// Наследник класса Product - класс HotDrink
 class HotDrink extends Product {
     private int temperature;
 
@@ -35,21 +41,28 @@ class HotDrink extends Product {
         return temperature;
     }
 
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
+    }
+
     @Override
     public String toString() {
         return "HotDrink [name=" + getName() + ", price=" + getPrice() + ", temperature=" + temperature + "]";
     }
 }
 
-// Главный класс с методом main
-public class Main {
+public class Seminar01HW {
     public static void main(String[] args) {
-        HotDrink tea = new HotDrink("Чай", 1.5, 80);
-        HotDrink coffee = new HotDrink("Кофе", 2.0, 90);
-        HotDrink hotChocolate = new HotDrink("Горячий шоколад", 2.5, 85);
+        HotDrink tea = new HotDrink("Tea", 1.99, 75);
+        HotDrink coffee = new HotDrink("Coffee", 2.49, 85);
 
         System.out.println(tea);
         System.out.println(coffee);
-        System.out.println(hotChocolate);
+
+        tea.setPrice(2.29);
+        coffee.setTemperature(90);
+
+        System.out.println(tea);
+        System.out.println(coffee);
     }
 }
